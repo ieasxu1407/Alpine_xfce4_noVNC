@@ -9,7 +9,8 @@ window.onload = function () {
         flushingTime: 100
     })
 
-    var ws = new WebSocket(socketURL)
+    var protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
+var url = protocol + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
     ws.binaryType = 'arraybuffer'
     ws.addEventListener('message', function (event) {
         var data = new Uint16Array(event.data)
