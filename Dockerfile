@@ -41,6 +41,10 @@ sleep 1 & \
 
 USER alpine
 
+# script.js 내의 ws:// 주소를 wss:// 로 강제 치환하는 명령어입니다.
+RUN sed -i 's/ws:\/\//wss:\/\//g' /root/noVNC/script.js
+
+
 EXPOSE 6080
 
 ENTRYPOINT [ "/bin/bash", "/entry.sh" ]
