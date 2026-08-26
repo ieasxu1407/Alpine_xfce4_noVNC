@@ -2,8 +2,6 @@ FROM alpine:3.16
 
 LABEL maintainer="Don <novaspirit@novaspirit.com>"
 
-EXPOSE 6080
-
 RUN apk add --no-cache sudo git xfce4 faenza-icon-theme bash python3 tigervnc xfce4-terminal firefox cmake wget \
     pulseaudio xfce4-pulseaudio-plugin pavucontrol pulseaudio-alsa alsa-plugins-pulse alsa-lib-dev nodejs npm \
     build-base \
@@ -42,5 +40,7 @@ sleep 1 & \
 >/entry.sh
 
 USER alpine
+
+EXPOSE 6080
 
 ENTRYPOINT [ "/bin/bash", "/entry.sh" ]
