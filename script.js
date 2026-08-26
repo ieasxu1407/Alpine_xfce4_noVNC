@@ -1,7 +1,8 @@
 //PCM Player : https://github.com/samirkumardas/pcm-player/blob/master/example/server/server.js
 
 window.onload = function () {
-    var socketURL = 'ws://' + window.location.hostname + ':56780'
+    var protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
+var socketURL = protocol + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
     var player = new PCMPlayer({
         encoding: '16bitInt',
         channels: 2,
@@ -9,8 +10,7 @@ window.onload = function () {
         flushingTime: 100
     })
 
-    var protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
-var url = protocol + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+    var ws = new WebSocket(socketURL)
     ws.binaryType = 'arraybuffer'
     ws.addEventListener('message', function (event) {
         var data = new Uint16Array(event.data)
