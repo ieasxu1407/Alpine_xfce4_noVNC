@@ -10,7 +10,7 @@ var socketURL = protocol + window.location.hostname + (window.location.port ? ":
         flushingTime: 100
     })
 
-    var ws = new WebSocket(socketURL)
+    
     ws.binaryType = 'arraybuffer'
     ws.addEventListener('message', function (event) {
         var data = new Uint16Array(event.data)
